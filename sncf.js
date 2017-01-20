@@ -5,7 +5,7 @@ module.exports = {
   api: "https://api.sncf.com/v1/coverage/sncf",
 
   findPlace: function(name, callback) {
-    request({url: this.api + "/places?q=" + name, auth: {user: this.key, pass: ''} }, function (error, response, body) {
+    request(this.generateUrl(this.api + "/places?q=" + name), function (error, response, body) {
       if(error != null) {
         return callback(error, null);
       }
@@ -16,7 +16,7 @@ module.exports = {
     })
   },
   findJourneys: function(from, to, callback) {
-    request({url: this.api + "/journeys?from=" + from.id + "&to=" + to.id, auth: {user: this.key, pass: ''} }, function (error, response, body) {
+    request(this.generateUrl(this.api + "/journeys?from=" + from.id + "&to=" + to.id), function (error, response, body) {
       if(error != null) {
         return callback(error, null);
       }
@@ -25,5 +25,8 @@ module.exports = {
 
       return callback(error, resp.journeys);
     })
+  },
+  generateUrl: function(url) {
+    return {url: url, auth: {user: this.key, pass: ''} }
   }
 };
