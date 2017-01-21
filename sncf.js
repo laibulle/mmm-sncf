@@ -23,7 +23,18 @@ module.exports = {
 
       const resp = JSON.parse(body);
 
-      return callback(error, resp.journeys);
+      return callback(error, resp);
+    })
+  },
+  next: function(link, callback) {
+    request(this.generateUrl(link), function (error, response, body) {
+      if(error != null) {
+        return callback(error, null);
+      }
+
+      const resp = JSON.parse(body);
+
+      return callback(error, resp);
     })
   },
   generateUrl: function(url) {
