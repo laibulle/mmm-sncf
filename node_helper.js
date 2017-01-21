@@ -32,6 +32,7 @@ module.exports = NodeHelper.create({
       });
     }
   },
+
   startFetching(places, journeys) {
     var total = 0;
     const self = this;
