@@ -1,3 +1,4 @@
+const NodeHelper = require("node_helper");
 const sncf = require('./sncf');
 
 module.exports = NodeHelper.create({
